@@ -127,7 +127,7 @@
 
             keyboardButtons.forEach((el, i) => {
                 el.addEventListener('click', function() {
-                    Livewire.emit('eventoDesdeJS', el.innerHTML);
+                    Livewire.dispatch('eventoDesdeJS', {key: el.innerHTML});
                 });
             })
 
@@ -169,7 +169,7 @@
 
                 let inputKeyboard = document.querySelector('.inputKeyboard').value;
                 let productSelected = document.querySelector('.selected-row').children[0].innerHTML;
-                Livewire.emit('incrementProductKeyboard', productSelected, inputKeyboard);
+                Livewire.dispatch('incrementProductKeyboard', {productSelected, inputKeyboard});
             })
 
             priceKeyboard.addEventListener('click', (el) => {
@@ -179,7 +179,7 @@
 
                 let inputKeyboard = document.querySelector('.inputKeyboard').value;
                 let productSelected = document.querySelector('.selected-row').children[0].innerHTML;
-                Livewire.emit('priceProductKeyboard', productSelected, inputKeyboard);
+                Livewire.dispatch('priceProductKeyboard', {productId: productSelected, price: inputKeyboard});
             })
 
             dtoKeyboard.addEventListener('click', (el) => {
@@ -189,7 +189,7 @@
                 let inputKeyboard = document.querySelector('.inputKeyboard').value;
                 let productSelected = document.querySelector('.selected-row').children[0].innerHTML;
                 let priceProduct = document.querySelector('.selected-row .priceProduct').getAttribute('value');
-                Livewire.emit('dtoProductKeyboard', inputKeyboard, productSelected, priceProduct);
+                Livewire.dispatch('dtoProductKeyboard', inputKeyboard, productSelected, priceProduct);
             })
         </script>
     </x-slot>

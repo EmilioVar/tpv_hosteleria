@@ -1,0 +1,3 @@
+<span>
+    {{ session('tableSelected') }}
+</span>
