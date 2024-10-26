@@ -12,8 +12,7 @@ class ListTpv extends Component
     public $quantityProduct;
     public $idProduct;
 
-    #[On('productSelect')]
-    #[On('tableSelected')]
+    #[On(['productSelect','tableSelected'])]
     public function updateProductsInTable()
     {
         $this->productsTpv = Table::find(session('tableSelected'))->products;
