@@ -52,7 +52,7 @@
                                 </button>
                             </div>
                             <!-- Modal body -->
-                            <livewire:tables.select-table :tables="$tables" />
+                            <livewire:tables.select-table />
                             <!-- Modal footer -->
                             <div
                                 class="flex justify-center items-center p-6 space-x-2 border-t border-gray-200 rounded-b dark:border-gray-600">
@@ -109,6 +109,7 @@
                     </div>
                 </div>
             </div>
+            <livewire:tables.create />
         </div>
     </div>
     <x-slot:script>

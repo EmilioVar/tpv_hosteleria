@@ -4,11 +4,21 @@ namespace App\Livewire\Tables;
 
 use App\Models\Table;
 use Livewire\Component;
+use Livewire\Attributes\On;
 use Illuminate\Support\Facades\Session;
 
 class SelectTable extends Component
 {
     public $tables;
+
+    public function mount() {
+        $this->tables = Table::all();
+    }
+
+    #[On('createdTable')]
+    public function createdTable() {
+        $this->tables = Table::all();
+    }
 
     public function tableSelected($tableId) 
     {

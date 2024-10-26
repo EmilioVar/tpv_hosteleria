@@ -10,6 +10,8 @@ class Table extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['ocupated', 'selected'];
+
     public function products(): BelongsToMany  {
         return $this->belongsToMany(Product::class, 'tables_products')
                     ->withPivot('quantity','price')
