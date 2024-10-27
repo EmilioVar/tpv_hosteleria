@@ -27,7 +27,7 @@
     <p>Ticket {{ $ticket->id }}</p>
     <br>
     <section>
-        <table>
+        <table class="text-[.8em]">
             <thead>
                 <tr>
                     <th>Producto</th>
