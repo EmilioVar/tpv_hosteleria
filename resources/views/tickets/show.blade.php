@@ -60,6 +60,9 @@
         <br>
         համար
     </p>
+    <script>
+        window.print();
+    </script>
 </body>
 
 </html>
