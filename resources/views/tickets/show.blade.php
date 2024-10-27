@@ -49,7 +49,7 @@
             </tbody>
         </table>
         <hr>
-        <h4>Total: <strong>{{ $ticket->total_ticket }}</strong></h4>
+        <h4>Total: <strong>{{ $ticket->total_ticket }} €</strong></h4>
     </section>
     <br>
     <section>
