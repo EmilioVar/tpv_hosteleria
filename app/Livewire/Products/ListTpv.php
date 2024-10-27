@@ -27,14 +27,17 @@ class ListTpv extends Component
             ->where('product_id', $idProduct)
             ->first()
             ->pivot->update(['quantity' => $quantityProduct]);
+
+        $this->dispatch('productQuantityIsChangedToCreateTicket');
     }
 
     public function productIncrement($productId)
     {
         Table::find(session('tableSelected'))->products()->where('product_id', $productId)->first()->pivot->increment('quantity');
 
-        $this->productsTpv = Table::find(session('tableSelected'))->products;
-        $this->dispatch('updateTotalAmount');
+        $p = Table::find(session('tableSelected'))->products;
+        $this->productsTpv = $p;
+        $this->dispatch('updateTotalAmount', products: $p);
     }
 
     public function productDecrement($productId)
@@ -49,8 +52,9 @@ class ListTpv extends Component
             $product->pivot->decrement('quantity');
         }
 
-        $this->productsTpv = Table::find(session('tableSelected'))->products;
-        $this->dispatch('updateTotalAmount');
+        $p = Table::find(session('tableSelected'))->products;
+        $this->productsTpv = $p;
+        $this->dispatch('updateTotalAmount', products: $p);
     }
 
     public function productRemove($productId)

@@ -47,7 +47,7 @@ class Keyboard extends Component
         $this->inputKeyboard = '';
 
         $this->dispatch('productIncrementKeyboard');
-        $this->dispatch('updateTotalAmount');
+        $this->dispatch('updateTotalAmount', );
     }
 
     #[On('dtoProductKeyboard')]

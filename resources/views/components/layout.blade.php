@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         {{ $style ?? '' }}
-        <title>{{ $title ?? 'Page Title' }}</title>
+        <title>{{ $title ?? env('APP_NAME').'-'.'Page Title' }}</title>
         @vite(['resources/css/app.css','resources/js/app.js'])
         @livewireStyles
     </head>
