@@ -35,14 +35,14 @@
                 <tr>
                     <th>Producto</th>
                     <th>Precio</th>
-                    <th>Cantidad</th>
+                    <th>qty</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach ($products as $product)
                     <tr>
                         <td>{{ $product['name'] }}</td>
-                        <td class="text-center">{{ $product['pivot']['price'] }}</td>
+                        <td class="text-center">{{ $product['pivot']['price'] }} €</td>
                         <td class="text-center">{{ $product['pivot']['quantity'] }}</td>
                     </tr>
                 @endforeach
