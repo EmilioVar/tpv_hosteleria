@@ -38,7 +38,7 @@
             <tbody>
                 @foreach ($products as $product)
                     <tr>
-                        <td>{{ Str::limit($product['name'], 5) }}</td>
+                        <td>{{ $product['name'] }}</td>
                         <td>{{ $product['pivot']['price'] }}</td>
                         <td>{{ $product['pivot']['quantity'] }}</td>
                     </tr>
