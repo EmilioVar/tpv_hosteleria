@@ -32,7 +32,7 @@
         <hr>
         <table class="text-[.8em]">
             <thead>
-                <tr>
+                <tr class="text-left">
                     <th>Producto</th>
                     <th>Precio</th>
                     <th>qty</th>
