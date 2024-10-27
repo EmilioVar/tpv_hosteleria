@@ -42,8 +42,8 @@
                 @foreach ($products as $product)
                     <tr>
                         <td>{{ $product['name'] }}</td>
-                        <td classs="text-center">{{ $product['pivot']['price'] }}</td>
-                        <td classs="text-center">{{ $product['pivot']['quantity'] }}</td>
+                        <td class="text-center">{{ $product['pivot']['price'] }}</td>
+                        <td class="text-center">{{ $product['pivot']['quantity'] }}</td>
                     </tr>
                 @endforeach
             </tbody>
