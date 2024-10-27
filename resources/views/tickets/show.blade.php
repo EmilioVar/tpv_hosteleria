@@ -20,13 +20,16 @@
     <div class="ocultar-al-imprimir m-2">
         <a class="p-2 border-2 rounded-md bg-blue-200 text-blue-700 " href="{{ route('index') }}">Volver</a>
     </div>
-    <p>Bar Monte Ararat</p>
-    <p>X8222827M</p>
-    <p>C/ CONDE DE LUMIARES 4</p>
-    <p>46019 Valencia</p>
-    <p>Ticket {{ $ticket->id }}</p>
+    <div class="text-[.9em]">
+        <p>Bar Monte Ararat</p>
+        <p>X8222827M</p>
+        <p>C/ CONDE DE LUMIARES 4</p>
+        <p>46019 Valencia</p>
+        <p>Ticket {{ $ticket->id }}</p>
+    </div>
     <br>
     <section>
+        <hr>
         <table class="text-[.8em]">
             <thead>
                 <tr>
@@ -45,6 +48,7 @@
                 @endforeach
             </tbody>
         </table>
+        <hr>
         <h4>Total: <strong>{{ $ticket->total_ticket }}</strong></h4>
     </section>
     <br>
