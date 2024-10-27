@@ -6,10 +6,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+        <style>
+            @media print {
+                .ocultar-al-imprimir {
+                    display: none;
+                }
+            }
+        </style>
     <title>ticket</title>
 </head>
 
 <body>
+    <div class="ocultar-al-imprimir m-2">
+        <a class="p-2 border-2 rounded-md bg-blue-200 text-blue-700 " href="{{ route('index') }}">Volver</a>
+    </div>
     <p>Bar Monte Ararat</p>
     <p>X8222827M</p>
     <p>C/ CONDE DE LUMIARES 4</p>
@@ -44,11 +54,11 @@
     <br>
     <p>¡Gracias por venir!</p>
     <p>
-        Շնորհակալությունç
+        Շնորհակալություն
         <br>
-        գալու
+        այցելության
         <br>
-        համար:
+        համար
     </p>
 </body>
 
