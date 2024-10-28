@@ -14,8 +14,7 @@
             <livewire:groups.group-selector :groups="$groups" />
         </div>
         <!-- products -->
-        <div id="products" class="bg-orange-400 h-[50vh] col-span-5">
-            <h1 class="">products</h1>
+        <div id="products" class="h-[50vh] col-span-5 border-2 border-gray-100">
             <livewire:products.product-selector :products="$products" />
         </div>
         <!-- options -->

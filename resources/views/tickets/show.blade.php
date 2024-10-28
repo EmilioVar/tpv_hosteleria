@@ -6,13 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
-        <style>
-            @media print {
-                .ocultar-al-imprimir {
-                    display: none;
-                }
+    <style>
+        @media print {
+            .ocultar-al-imprimir {
+                display: none;
             }
-        </style>
+        }
+    </style>
     <title>ticket</title>
 </head>
 
@@ -25,7 +25,8 @@
         <p>X8222827M</p>
         <p>C/ CONDE DE LUMIARES 4</p>
         <p>46019 Valencia</p>
-        <p>Ticket {{ $ticket->id }}</p>
+        <p>{{ Carbon\Carbon::now()->format('d/m/Y H:i') }}</p>
+        <p>Ticket nº {{ $ticket->id }}</p>
     </div>
     <br>
     <section>
@@ -33,40 +34,43 @@
         <table class="text-[.8em]">
             <thead>
                 <tr class="text-left">
+                    <th>Uds.</th>
                     <th>Producto</th>
-                    <th>Precio</th>
-                    <th>qty</th>
+                    <th>Importe</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach ($products as $product)
                     <tr>
-                        <td>{{ $product['name'] }}</td>
-                        <td class="text-center">{{ $product['pivot']['price'] }} €</td>
                         <td class="text-center">{{ $product['pivot']['quantity'] }}</td>
+                        <td>{{ $product['name'] }}</td>
+                        <td class="text-center">
+                            {{ Number::format($product['pivot']['price'] * $product['pivot']['quantity'], precision: 2) }}
+                            €</td>
                     </tr>
                 @endforeach
             </tbody>
         </table>
         <hr>
-        <h4>Total: <strong>{{ $ticket->total_ticket }} €</strong></h4>
+        <br>
+        <h4>Total: <strong>{{ Number::format($ticket->total_ticket, precision: 2) }} €</strong></h4>
     </section>
-    <br>
     <section>
         <p>Forma pago: {{ $ticket->type_pay }}</p>
+        <p>iva incluido</p>
     </section>
     <br>
     <p>¡Gracias por venir!</p>
-    <p>
+    <p class="text-[.7em]">
         Շնորհակալություն
         <br>
         այցելության
         <br>
         համար
     </p>
-    <script>
+    {{-- <script>
         window.print();
-    </script>
+    </script> --}}
 </body>
 
 </html>
