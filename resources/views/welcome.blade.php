@@ -1,8 +1,22 @@
 <x-layout>
     @session('ticket_creado_correctamente')
-        <div>
-            ticket creado correctamente
-        </div>
+        <script type="module">
+            const Toast = Swal.mixin({
+                toast: true,
+                position: "top",
+                showConfirmButton: false,
+                timer: 2000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.onmouseenter = Swal.stopTimer;
+                    toast.onmouseleave = Swal.resumeTimer;
+                }
+            });
+            Toast.fire({
+                icon: "success",
+                title: "¡Venta realizada correctamente!"
+            });
+        </script>
     @endsession
     <div id="pos-system" class="container-full grid grid-cols-10 grid-rows-[auto,auto,auto]">
         <!-- items count -->
@@ -113,90 +127,101 @@
     </div>
     <x-slot:script>
         <script type="module">
-                Livewire.on('productSelect', function() {
-                    console.log("si")
-                    const productListContainer = document.getElementById('items-screen');
-                    const lastProduct = productListContainer.lastElementChild;
-                    lastProduct.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'end'
+            Livewire.on('productSelect', function() {
+                console.log("si")
+                const productListContainer = document.getElementById('items-screen');
+                const lastProduct = productListContainer.lastElementChild;
+                lastProduct.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'end'
+                });
+            });
+
+            let keyboardButtons = document.querySelectorAll('.btnKeyboard');
+
+            keyboardButtons.forEach((el, i) => {
+                el.addEventListener('click', function() {
+                    Livewire.dispatch('eventoDesdeJS', {
+                        key: el.innerHTML
                     });
                 });
-    
-                let keyboardButtons = document.querySelectorAll('.btnKeyboard');
-    
-                keyboardButtons.forEach((el, i) => {
-                    el.addEventListener('click', function() {
-                        Livewire.dispatch('eventoDesdeJS', {key: el.innerHTML});
-                    });
-                })
-    
-                let rowItems = document.querySelectorAll('.rowItem');
-    
-                rowItems.forEach(row => {
-                    row.addEventListener('click', () => {
-                        if (row.classList.contains('selected-row')) {
-                            row.classList.remove('selected-row');
-                        } else {
+            })
+
+            let rowItems = document.querySelectorAll('.rowItem');
+
+            rowItems.forEach(row => {
+                row.addEventListener('click', () => {
+                    if (row.classList.contains('selected-row')) {
+                        row.classList.remove('selected-row');
+                    } else {
+                        rowItems.forEach(r => r.classList.remove('selected-row'));
+                        row.classList.add('selected-row');
+                    }
+                });
+            });
+
+            window.addEventListener('renderSelectItemInProuctsTpv', event => {
+                setTimeout(() => {
+                    let rowItems = document.querySelectorAll('.rowItem');
+                    rowItems.forEach(row => {
+                        row.addEventListener('click', () => {
+                            console.log(row);
                             rowItems.forEach(r => r.classList.remove('selected-row'));
                             row.classList.add('selected-row');
-                        }
-                    });
-                });
-                
-                window.addEventListener('renderSelectItemInProuctsTpv', event => {
-                    setTimeout(() => {
-                        let rowItems = document.querySelectorAll('.rowItem');
-                        rowItems.forEach(row => {
-                            row.addEventListener('click', () => {
-                                console.log(row);
-                                rowItems.forEach(r => r.classList.remove('selected-row'));
-                                row.classList.add('selected-row');
-                                console.log(rowItems)
-                            });
+                            console.log(rowItems)
                         });
-                    }, 300);
-                })
-    
-    
-                // INCREMENT/PRICE/DTO KEYBOARD
-                const incrementKeyboard = document.querySelector('.incrementKeyboard');
-                const priceKeyboard = document.querySelector('.priceKeyboard');
-                const dtoKeyboard = document.querySelector('.dtoKeyboard');
-    
-                incrementKeyboard.addEventListener('click', (el) => {
-                    if (!document.querySelector('.selected-row')) {
-                        alert("no hay nada seleccionado!")
-                    }
-    
-                    let inputKeyboard = document.querySelector('.inputKeyboard').value;
-                    let productSelected = document.querySelector('.selected-row').children[0].innerHTML;
-                    Livewire.dispatch('incrementProductKeyboard', {productId: productSelected,quantity: inputKeyboard});
-                })
-    
-                priceKeyboard.addEventListener('click', (el) => {
-                    if (!document.querySelector('.selected-row')) {
-                        alert("no hay nada seleccionado!")
-                    }
-    
-                    let inputKeyboard = document.querySelector('.inputKeyboard').value;
-                    let productSelected = document.querySelector('.selected-row').children[0].innerHTML;
-                    Livewire.dispatch('priceProductKeyboard', {productId: productSelected, price: inputKeyboard});
-                })
-    
-                dtoKeyboard.addEventListener('click', (el) => {
-                    if (!document.querySelector('.selected-row')) {
-                        alert("no hay nada seleccionado!")
-                    }
-                    let inputKeyboard = document.querySelector('.inputKeyboard').value;
-                    let productSelected = document.querySelector('.selected-row').children[0].innerHTML;
-                    let priceProduct = document.querySelector('.selected-row .priceProduct').getAttribute('value');
-                    Livewire.dispatch('dtoProductKeyboard', {inputKeyboard: inputKeyboard,productId: productSelected,originalPrice: priceProduct});
-                })
+                    });
+                }, 300);
+            })
+
+
+            // INCREMENT/PRICE/DTO KEYBOARD
+            const incrementKeyboard = document.querySelector('.incrementKeyboard');
+            const priceKeyboard = document.querySelector('.priceKeyboard');
+            const dtoKeyboard = document.querySelector('.dtoKeyboard');
+
+            incrementKeyboard.addEventListener('click', (el) => {
+                if (!document.querySelector('.selected-row')) {
+                    alert("no hay nada seleccionado!")
+                }
+
+                let inputKeyboard = document.querySelector('.inputKeyboard').value;
+                let productSelected = document.querySelector('.selected-row').children[0].innerHTML;
+                Livewire.dispatch('incrementProductKeyboard', {
+                    productId: productSelected,
+                    quantity: inputKeyboard
+                });
+            })
+
+            priceKeyboard.addEventListener('click', (el) => {
+                if (!document.querySelector('.selected-row')) {
+                    alert("no hay nada seleccionado!")
+                }
+
+                let inputKeyboard = document.querySelector('.inputKeyboard').value;
+                let productSelected = document.querySelector('.selected-row').children[0].innerHTML;
+                Livewire.dispatch('priceProductKeyboard', {
+                    productId: productSelected,
+                    price: inputKeyboard
+                });
+            })
+
+            dtoKeyboard.addEventListener('click', (el) => {
+                if (!document.querySelector('.selected-row')) {
+                    alert("no hay nada seleccionado!")
+                }
+                let inputKeyboard = document.querySelector('.inputKeyboard').value;
+                let productSelected = document.querySelector('.selected-row').children[0].innerHTML;
+                let priceProduct = document.querySelector('.selected-row .priceProduct').getAttribute('value');
+                Livewire.dispatch('dtoProductKeyboard', {
+                    inputKeyboard: inputKeyboard,
+                    productId: productSelected,
+                    originalPrice: priceProduct
+                });
+            })
 
             Livewire.on('renderSelectItemInProuctsTpv', () => {
-                setTimeout(() => {
-                }, 500);
+                setTimeout(() => {}, 500);
             });
         </script>
     </x-slot>
