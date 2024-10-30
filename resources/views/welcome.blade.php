@@ -64,11 +64,13 @@
             </div>
             <!-- delete table -->
             <livewire:tables.delete-table />
+            <!-- create table --->
+            <livewire:tables.create />
             <!-- ticket -->
             <div>
                 <!-- Modal toggle -->
                 <button data-modal-target="ticketModal" data-modal-toggle="ticketModal"
-                    class="block w-20 h-20 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                    class="block w-20 h-20 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none mt-3 focus:ring-blue-300 font-medium rounded-lg py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                     type="button">
                     TICKET
                 </button>
@@ -102,7 +104,6 @@
                     </div>
                 </div>
             </div>
-            <livewire:tables.create />
         </div>
     </div>
     <x-slot:script>
@@ -165,7 +166,7 @@
     
                     let inputKeyboard = document.querySelector('.inputKeyboard').value;
                     let productSelected = document.querySelector('.selected-row').children[0].innerHTML;
-                    Livewire.dispatch('incrementProductKeyboard', {productSelected, inputKeyboard});
+                    Livewire.dispatch('incrementProductKeyboard', {productId: productSelected,quantity: inputKeyboard});
                 })
     
                 priceKeyboard.addEventListener('click', (el) => {
@@ -185,7 +186,7 @@
                     let inputKeyboard = document.querySelector('.inputKeyboard').value;
                     let productSelected = document.querySelector('.selected-row').children[0].innerHTML;
                     let priceProduct = document.querySelector('.selected-row .priceProduct').getAttribute('value');
-                    Livewire.dispatch('dtoProductKeyboard', inputKeyboard, productSelected, priceProduct);
+                    Livewire.dispatch('dtoProductKeyboard', {inputKeyboard: inputKeyboard,productId: productSelected,originalPrice: priceProduct});
                 })
 
             Livewire.on('renderSelectItemInProuctsTpv', () => {

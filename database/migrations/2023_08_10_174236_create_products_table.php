@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('description');
             $table->float('price',8,2);
+            $table->enum('tax', [21, 10, 4]);
             $table->foreignId('group_id')->constrained()->nullable();
             $table->timestamps();
         });

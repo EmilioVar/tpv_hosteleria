@@ -26,6 +26,7 @@ class ProductController extends Controller
             'name' => $request->name,
             'description' => $request->description,
             'price' => $request->price,
+            'tax' => $request->tax,
             'group_id' => $request->group_id,
         ]);
 

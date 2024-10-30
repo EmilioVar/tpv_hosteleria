@@ -23,6 +23,7 @@ class Keyboard extends Component
     #[On('incrementProductKeyboard')]
     public function incrementProductInKeyboard($productId, $quantity)
     {
+        
         $pivotTable = Table::find(session('tableSelected'))
             ->products()
             ->where('product_id', $productId)
