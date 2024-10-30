@@ -62,6 +62,11 @@ class Create extends Component
         
     }
 
+    #[On('ticketDispatchedCorrectly')]
+    public function ticketDispatchedCorrectly($ticketId) {
+        dd('pos aquí va');
+    }
+
     #[On('totalAmountChangeToTicket')]
     public function totalAmountChangeToTicket($total) {
        $this->totalTicket = $total;

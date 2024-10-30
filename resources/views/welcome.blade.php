@@ -1,4 +1,9 @@
 <x-layout>
+    @session('ticket_creado_correctamente')
+        <div>
+            ticket creado correctamente
+        </div>
+    @endsession
     <div id="pos-system" class="container-full grid grid-cols-10 grid-rows-[auto,auto,auto]">
         <!-- items count -->
         <div id="items-screen" class="bg-gray-50 h-[calc(50vh-2.75rem)] overflow-y-scroll col-span-6 relative">
@@ -70,7 +75,7 @@
             <div>
                 <!-- Modal toggle -->
                 <button data-modal-target="ticketModal" data-modal-toggle="ticketModal"
-                    class="block w-20 h-20 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none mt-3 focus:ring-blue-300 font-medium rounded-lg py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                    class="block w-20 h-20 text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none mt-3 focus:ring-green-300 font-medium rounded-lg py-2.5 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
                     type="button">
                     TICKET
                 </button>
@@ -190,7 +195,6 @@
                 })
 
             Livewire.on('renderSelectItemInProuctsTpv', () => {
-                console.log('clicado')
                 setTimeout(() => {
                 }, 500);
             });

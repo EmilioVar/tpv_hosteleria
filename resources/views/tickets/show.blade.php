@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @livewireStyles
     <style>
         @media print {
             .ocultar-al-imprimir {
@@ -68,9 +69,30 @@
         <br>
         համար
     </p>
-    {{-- <script>
+    @livewireScripts
+    <script type="module">
         window.print();
-    </script> --}}
+
+        fetch("{{ route('return-from-ticket') }}", {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+    })
+    .then(response => {
+        if (response.ok) {
+            return response.json();
+        }
+        throw new Error('Network response was not ok.');
+    })
+    .then(data => {
+        window.print();
+        window.location.href = document.referrer;
+    })
+    .catch(error => console.error('Error:', error));
+
+        //window.location.href = document.referrer;
+    </script>
 </body>
 
 </html>
