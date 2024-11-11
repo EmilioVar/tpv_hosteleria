@@ -19,15 +19,15 @@
         <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
             <form class="space-y-6" action="{{ route('login') }}" method="POST">
                 @csrf
-                <!-- username -->
+                <!-- email -->
                 <div>
-                    <label for="username" class="block text-sm font-medium leading-6 text-gray-900">Nombre de
+                    <label for="email" class="block text-sm font-medium leading-6 text-gray-900">Nombre de
                         usuario</label>
                     <div class="mt-2">
-                        <input id="username" name="username" type="text" value="{{ old('username') }}"
-                            autocomplete="username"
-                            class="@error('username') is-invalid @enderror block w-full p-2 rounded-md border-0 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
-                        @error('username')
+                        <input id="email" name="email" type="text" value="{{ old('email') }}"
+                            autocomplete="email"
+                            class="@error('email') is-invalid @enderror block w-full p-2 rounded-md border-0 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                        @error('email')
                             <p class="text-[.8em] text-red-500 font-bold">{{ $message }}</p>
                         @enderror
                     </div>
